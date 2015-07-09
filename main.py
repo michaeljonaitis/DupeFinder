@@ -1,5 +1,6 @@
 import os
 import sys
+import cProfile
 from datetime import datetime
 
 from dupefinder import DupeFinder, DupeFinderError
@@ -11,8 +12,8 @@ if __name__ == '__main__':
         if os.path.exists(target_dir):
             startTime = datetime.now()
             dupe_finder = DupeFinder(target_dir)
-            duplicates = dupe_finder.find_duplicates()
-            #dupe_finder.print_results(duplicates)
+            cProfile.run('dupe_finder.find_duplicates()')
+
       
             print("{} - {}".format('Time Elapsed:', datetime.now() - startTime))
         else:

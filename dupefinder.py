@@ -31,7 +31,7 @@ class DupeFinder():
         for dir_name, sub_dir_names, all_files in os.walk(self.target_dir, followlinks=True):
             for a_file in all_files:
                 file_path = '{}/{}'.format(dir_name, a_file)
-                file_size = os.stat(file_path).st_size
+                file_size = os.path.getsize(file_path)
 
                 if unique_files.get(file_size):
                     file_hash = self.get_hash(file_path, self.should_buffer)

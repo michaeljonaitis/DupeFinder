@@ -8,4 +8,4 @@ Python script to find all duplicate files in a directory tree.
 
 2. Run main.py with target directory to dupe check
 
-   python main.py '/home/johndoe/Desktop/<directory_to_check>'
+   python main.py '/home/johndoe/Desktop/\<directory_to_check\>'

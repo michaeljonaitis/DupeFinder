@@ -2,7 +2,7 @@ import os
 import sys
 from datetime import datetime
 
-from dupefinder import DupeFinder
+from dupefinder import DupeFinder, DupeFinderError
 
 
 if __name__ == '__main__':
@@ -12,7 +12,7 @@ if __name__ == '__main__':
             startTime = datetime.now()
             dupe_finder = DupeFinder(target_dir)
             duplicates = dupe_finder.find_duplicates()
-            dupe_finder.print_results(duplicates)
+            #dupe_finder.print_results(duplicates)
       
             print("{} - {}".format('Time Elapsed:', datetime.now() - startTime))
         else:

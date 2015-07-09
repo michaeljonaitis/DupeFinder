@@ -5,14 +5,15 @@ from datetime import datetime
 from dupefinder import DupeFinder
 
 
-
-
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         target_dir = sys.argv[1]
         if os.path.exists(target_dir):
             startTime = datetime.now()
-            DupeFinder(target_dir).find_duplicates()
+            dupe_finder = DupeFinder(target_dir)
+            duplicates = dupe_finder.find_duplicates()
+            dupe_finder.print_results(duplicates)
+      
             print("{} - {}".format('Time Elapsed:', datetime.now() - startTime))
         else:
             raise DupeFinderError("Folder not found.")
@@ -22,3 +23,4 @@ if __name__ == '__main__':
 
     elif len(sys.argv) > 2:
         raise DupeFinderError("Can dedupe only one folder at a time.")
+

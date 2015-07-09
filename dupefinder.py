@@ -1,8 +1,5 @@
 import hashlib
 import os
-import sys
-
-from datetime import datetime
 
 class DupeFinderError(Exception):
     pass
@@ -13,9 +10,15 @@ class DupeFinder():
         self.target_dir = str(target_dir)
 
     @staticmethod
+    def print_results(duplicates):
+        print("--- Found {} Duplicate Files ---".format(len(duplicates)))
+        for duplicate_file in duplicates:		
+            print(duplicates.get(duplicate_file))
+
+    @staticmethod
     def get_hash(path, buffer_size):
         hasher = hashlib.md5()
-        the_file = open(path, 'rb')
+        the_file = open(path, 'r')
         buff = the_file.read(buffer_size)
         while buff:
             hasher.update(buff)
@@ -33,8 +36,7 @@ class DupeFinder():
                     duplicates.update({file_hash:file_path})
                 else:
                     unique_files.update({file_hash:file_path})
+        return duplicates
 
-        print("--- Duplicate Files ---")
-        for duplicate_file in duplicates:		
-            print(duplicates.get(duplicate_file))
+
 
